@@ -45,9 +45,10 @@ import {
 
 // These global variables are expected to be injected by the environment.
 // For a *real* build, you will replace these with Environment Variables.
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+// --- NEW CODE (Use this) ---
+const appId = process.env.NEXT_PUBLIC_APP_ID || 'default-app-id';
+const firebaseConfig = process.env.NEXT_PUBLIC_FIREBASE_CONFIG ? JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG) : null;
+const initialAuthToken = null; // We will sign in anonymously
 
 // Initialize Firebase
 let app;
